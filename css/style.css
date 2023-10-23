@@ -34,6 +34,7 @@ h1 span{
     width: 100%;
     cursor: pointer;
     transition: 1s;
+    border-radius: 10px;
 }
 .img-gallery img:hover{
     transform: scale(1.5);
