@@ -1,0 +1,322 @@
+/* Definición de variables */
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+
+}
+
+:root {
+  padding: 0;
+  --verde: #016c7a;
+  --blanco: #FFFFFF;
+  --rojo: #6e0134;
+  --oscuro: #000000;
+  --titulos: "raleway";
+  --parrafos: "ralway";
+  --gris: #ddd9d981;
+  --gris2: rgb(221, 217, 217);
+
+}
+
+/* Estilos generales del cuerpo del documento */
+body {
+  font-family: Arial, sans-serif;
+  font-style: normal;
+  margin: 0;
+  padding: 0;
+  background-color: #cbcaca;
+  color: #333;
+}
+
+/* Estilos del encabezado */
+.header {
+  width: 100%;
+  background-color: #333;
+  padding: 1rem 0;
+
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* Estilos de la barra de navegación */
+.header .logo {
+  color: #cbcaca;
+  font-family: Kranky; 
+  font-size: 32px;
+}
+
+.header .button {
+  display: none;
+  width: 2em;
+  height: 2em;
+}
+
+.header .svg {
+  width: 2em;
+  height: 2em;
+  margin: -1em;
+  fill: white;
+  background-color: #333;
+}
+
+.header .ul {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.header .li {
+  margin-right: 2rem;
+}
+
+/* Estilos de los enlaces de navegación */
+nav a {
+  text-decoration: none;
+  color: white;
+}
+
+/* Estilos para pantallas con un ancho máximo de 768px */
+@media screen and (max-width: 768px) {
+  .header .button {
+    display: block;
+    cursor: pointer;
+  }
+
+  .header .navbar {
+    width: 100%;
+    height: 0;
+    overflow: hidden;
+    transition: all .5s ease;
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .header .navbar.activo {
+    height: 12vh;
+  }
+
+  .header .ul {
+    flex-direction: column;
+  }
+
+  .navbar a {
+    margin: 1rem;
+  }
+}
+
+/* Estilos del contenido de la página de inicio (VIDEO) */
+.cont-vid {
+  position: relative;
+  padding: 5px 0;
+  background-color: #333;
+  }
+
+.cont-vid::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.37);
+}
+
+.cont-text {
+  position: absolute;
+  z-index: 2;
+  width: 100%;
+  height: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: 3rem 0;
+  margin-top: 2rem 0;
+}
+
+.cont-text h2 {
+  color: var(--blanco);
+  font-size: 10vmax;
+}
+
+/* Estilos para la pantalla pequeña (max-width: 768px) */
+@media screen and (max-width: 768px) {
+  .cont-text h2 {
+    height: 100%;
+    font-size: 5vmax;
+  }
+}
+
+video {
+  width: 100%;
+  height: 100%;
+}
+
+.btn-bordes {
+  background-color: lightgray;
+  color: black;
+}
+
+/* Estilos para Carrousel */
+.carrtext {
+  text-align: center;
+  color: black;
+  display: flex;
+  flex-direction: column;
+
+}
+
+.carrsect {
+  display: flex;
+  width: 60%;
+  height: 768px;
+  margin: auto;
+  border-radius: 15px;
+  border: #000000;
+  position: relative;
+
+
+}
+
+.carrsect img{
+  width: 0px;
+  flex-grow: 1;
+  object-fit: cover;
+  opacity: .7;
+  transition: .5s ease;
+  
+}
+
+.carrsect img:hover{
+  cursor: crosshair;
+  width: 768px;
+  height: auto;
+  opacity: 1;
+  filter: contrast(120%);
+  
+}
+
+/* Media query para carrousel */
+
+@media screen and (max-width: 768px) {
+  .carrtext {
+    font-size: 80%;
+  }
+  .carrsect {
+    padding: 3px;
+    width: 80%;
+    height: 480px;
+  }
+  .carrsect img {
+    display: flex;
+    max-width: 80%;
+
+  }
+
+  .carrsect img:hover{
+    max-width: 280px;
+  }
+
+}
+
+/* Estilos del footer */
+.footer {
+  background-color: #333;
+  color: white;
+  padding: 20px;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.footer-left,
+.footer-right {
+  flex: 1;
+  text-align: left;
+  margin-bottom: 20px;
+  /* Agregado para separar los elementos en dispositivos pequeños */
+}
+
+.footer-left a,
+.footer-right a {
+  color: white;
+  text-decoration: none;
+  transition: color 0.2s;
+  margin-right: 10px;
+}
+
+.footer-left a:hover,
+.footer-right a:hover {
+  color: rgb(0, 128, 128);
+}
+
+.page-info {
+  text-align: right;
+  margin-top: -20px;
+  margin-left: auto;
+}
+
+.footer-right {
+  flex: 1;
+  text-align: left;
+  margin-left: 0;
+  /* Eliminado el margen izquierdo en dispositivos pequeños */
+}
+
+.footer-left {
+  line-height: 1.5;
+}
+
+.social-media {
+  text-align: center;
+  /* Alinear los enlaces en el centro en dispositivos pequeños */
+  margin-top: 20px;
+  /* Añadido espacio superior para separar los enlaces en dispositivos pequeños */
+}
+
+@media screen and (max-width: 768px) {
+  .footer {
+    height: 50%;
+    font-size: 2vmax;
+  }
+
+  .footer-left {
+    display: none;
+  }
+
+  .social-media {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+    text-decoration: none;
+  }
+
+  .social-media a {
+    margin: 5px 0;
+  }
+
+}
+
+/* Estilos para enlaces */
+a {
+  color: white;
+  text-decoration: none;
+  transition: color 0.3s;
+  font-weight: bold;
+}
+
+a:hover {
+  color: #0056b3;
+  font-weight: bold;
+}
+
+
+/* Estilos para Formulario CONTACTO */
+
