@@ -7,7 +7,7 @@ AWS.config.update({
 
 // Crear una nueva instancia de AWS.S3
 const s3 = new AWS.S3();
-const bucketName = 'NOMBRE_DE_TU_BUCKET';
+const bucketName = 'tpfinal-python';
 
 // Función para subir imágenes
 function uploadImages() {
