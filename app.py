@@ -1,75 +1,48 @@
-from flask import Flask, request, jsonify
-from flask_mysqldb import MySQL
-from werkzeug.utils import secure_filename
-import os
-from PIL import Image
-from io import BytesIO
+from flask import Flask, render_template, request, jsonify
+import boto3
+from botocore.exceptions import NoCredentialsError
 
 app = Flask(__name__)
 
-# Configuración de la base de datos MySQL
-app.config['MYSQL_HOST'] = '127.0.0.1'
-app.config['MYSQL_USER'] = 'tu_usuario_mysql'
-app.config['MYSQL_PASSWORD'] = 'tu_contraseña_mysql'
-app.config['MYSQL_DB'] = 'tu_base_de_datos_mysql'
+# Configuración de Amazon S3
+S3_BUCKET_NAME = 'tpfinal-python'
+AWS_ACCESS_KEY = 'AKIA5NXILMPQJDZE4E2E'
+AWS_SECRET_KEY = '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'
 
-mysql = MySQL(app)
+# Configuración de Boto3
+s3 = boto3.client('s3', aws_access_key_id=AWS_ACCESS_KEY, aws_secret_access_key=AWS_SECRET_KEY)
 
-# Directorio para almacenar temporalmente las imágenes subidas
-UPLOAD_FOLDER = 'C:\xampp\htdocs\uploads'
-app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
+# Ruta para la página principal
+@app.route('/')
+def index():
+    # Obtener la lista de objetos en el bucket de S3
+    response = s3.list_objects_v2(Bucket=S3_BUCKET_NAME)
+    archivos = [obj['Key'] for obj in response.get('Contents', [])]
 
-# Ruta para subir imágenes
+    # Construir URLs completas de las imágenes
+    urls_imagenes = [s3.generate_presigned_url('get_object', Params={'Bucket': S3_BUCKET_NAME, 'Key': archivo}) for archivo in archivos]
+
+    return render_template('index.html', urls_imagenes=urls_imagenes)
+
+# Ruta para subir una imagen al bucket
 @app.route('/upload', methods=['POST'])
-def upload_file():
-    if 'file' not in request.files:
-        return jsonify({'error': 'No se proporcionó ningún archivo'}), 400
+def upload_image():
+    try:
+        if 'file' not in request.files:
+            return jsonify({'error': 'No se encontró el archivo'}), 400
 
-    file = request.files['file']
+        file = request.files['file']
 
-    if file.filename == '':
-        return jsonify({'error': 'Nombre de archivo vacío'}), 400
+        if file.filename == '':
+            return jsonify({'error': 'Nombre de archivo no válido'}), 400
 
-    if file:
-        filename = secure_filename(file.filename)
-        filepath = os.path.join(app.config['UPLOAD_FOLDER'], filename)
-        file.save(filepath)
+        # Subir la imagen al bucket de S3
+        s3.upload_fileobj(file, S3_BUCKET_NAME, file.filename)
 
-        # Comprimir la imagen antes de almacenarla
-        compressed_filepath = compress_image(filepath)
+        return jsonify({'mensaje': 'Imagen subida exitosamente'}), 200
 
-        # Guardar la información en la base de datos
-        save_to_database(filename, compressed_filepath)
-
-        return jsonify({'message': 'Archivo subido exitosamente'}), 200
-
-    return jsonify({'error': 'Error desconocido'}), 500
-
-# Ruta para obtener todas las imágenes desde la base de datos
-@app.route('/images', methods=['GET'])
-def get_all_images():
-    cur = mysql.connection.cursor()
-    cur.execute("SELECT id, filename, filepath FROM images")
-    result = cur.fetchall()
-    cur.close()
-
-    images = [{'id': row[0], 'filename': row[1], 'filepath': row[2]} for row in result]
-
-    return jsonify({'images': images}), 200
-
-def compress_image(filepath):
-    # Utilizar la biblioteca Pillow para abrir y comprimir la imagen
-    with Image.open(filepath) as img:
-        img = img.resize((720, 720))
-        compressed_filepath = os.path.join(app.config['UPLOAD_FOLDER'], 'compressed_' + os.path.basename(filepath))
-        img.save(compressed_filepath)
-        return compressed_filepath
-
-def save_to_database(filename, filepath):
-    cur = mysql.connection.cursor()
-    cur.execute("INSERT INTO images (filename, filepath) VALUES (%s, %s)", (filename, filepath))
-    mysql.connection.commit()
-    cur.close()
+    except NoCredentialsError:
+        return jsonify({'error': 'Credenciales de Amazon S3 no válidas'}), 500
 
 if __name__ == '__main__':
     app.run(debug=True)
