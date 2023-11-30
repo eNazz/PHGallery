@@ -33,5 +33,17 @@ async function loadImagesFromS3() {
     }
 }
 
+function openFulImg(reference) {
+    const fulImgBox = document.getElementById("fulImgBox");
+    const fulImg = document.getElementById("fulImg");
+
+    fulImgBox.style.display = "flex";
+    fulImg.src = reference;
+}
+
+function closeImg() {
+    const fulImgBox = document.getElementById("fulImgBox");
+    fulImgBox.style.display = "none";
+    
 // Llamar a la función para cargar imágenes al cargar la página
 window.onload = loadImagesFromS3;

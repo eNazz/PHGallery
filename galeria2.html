@@ -36,13 +36,13 @@
   </header>
 
   <main>
-    <div class="ful-img" id="fulImgBox">
+    <div class="ful-img2" id="fulImgBox">
       <img src="imgs/1.jpg" id="fulImg" alt="">
       <span onclick="closeImg()">X</span>
     </div>
     <br><br><br>
     <!-- Nueva sección para mostrar imágenes locales -->
-    <h2>Imágenes Locales</h2>
+    <h1>Imágenes Locales</h1>
     <div class="img-gallery">
       <img src="imgs/1.jpg" onclick="openFulImg(this.src)" alt="">
       <img src="imgs/2.jpg" onclick="openFulImg(this.src)" alt="">
@@ -55,15 +55,15 @@
     </div>
 
     <!-- Formulario para subir imágenes -->
-    <h2>Subir Imágenes</h2>
+    <h1>Subir Imágenes</h1>
     <form id="uploadForm" enctype="multipart/form-data">
       <input type="file" id="fileInput" accept="image/*" multiple>
       <button type="button" onclick="uploadImages()">Subir Imágenes</button>
     </form>
 
     <!-- Nueva sección para mostrar imágenes desde S3 -->
-    <h2>Imágenes desde S3</h2>
-    <div class="img-gallery" id="s3-img-gallery"></div>
+    <h1>Imágenes desde S3</h1>
+    <div class="img-gallery2" id="s3-img-gallery"></div>
   </main>
 
 
@@ -101,7 +101,6 @@
   <!-- Nuevo script para cargar imágenes desde S3 -->
   <script src="https://sdk.amazonaws.com/js/aws-sdk-2.1119.0.min.js"></script>
   <script src="js/s3-gallery.js"></script>
-  <script src="js/subir-imagen.js"></script>
   <script src="js/script.js"></script>
 
 </body>
