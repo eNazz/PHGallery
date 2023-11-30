@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Subir y Comprimir Imágenes</title>
+</head>
+
+<body>
+    <form id="uploadForm" enctype="multipart/form-data">
+        <input type="file" id="fileInput" accept="image/*" multiple>
+        <button type="button" onclick="uploadAndCompress()">Subir y Comprimir</button>
+    </form>
+    <div id="output"></div>
+
+    <script>
+        async function uploadAndCompress() {
+            const fileInput = document.getElementById('fileInput');
+            const files = fileInput.files;
+
+            if (files.length === 0) {
+                alert('Selecciona al menos una imagen.');
+                return;
+            }
+
+            const formData = new FormData();
+            formData.append('file', files[0]);  // Solo enviamos la primera imagen para simplificar
+
+            try {
+                const response = await fetch('/upload', {
+                    method: 'POST',
+                    body: formData,
+                });
+
+                if (response.ok) {
+                    const result = await response.json();
+                    displayMessage(result.message);
+                    getAndDisplayImages();
+                } else {
+                    const errorResult = await response.json();
+                    displayMessage('Error: ' + errorResult.error);
+                }
+            } catch (error) {
+                console.error('Error:', error);
+                displayMessage('Error desconocido.');
+            }
+        }
+
+        async function getAndDisplayImages() {
+            try {
+                const response = await fetch('/images');
+
+                if (response.ok) {
+                    const result = await response.json();
+                    displayImages(result.images);
+                } else {
+                    const errorResult = await response.json();
+                    displayMessage('Error: ' + errorResult.error);
+                }
+            } catch (error) {
+                console.error('Error:', error);
+                displayMessage('Error desconocido.');
+            }
+        }
+
+        function displayImages(images) {
+            const output = document.getElementById('output');
+            output.innerHTML = '';
+
+            images.forEach((image) => {
+                const imgElement = document.createElement('img');
+                imgElement.src = image.filepath;
+                imgElement.style.maxWidth = '100%';
+                imgElement.style.marginBottom = '10px';
+
+                output.appendChild(imgElement);
+            });
+        }
+
+        function displayMessage(message) {
+            const output = document.getElementById('output');
+            output.innerHTML = `<p>${message}</p>`;
+        }
+    </script>
+</body>
+
+</html>
