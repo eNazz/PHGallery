@@ -6,7 +6,7 @@ AWS.config.update({
 });
   
   const s3 = new AWS.S3();
-  const bucketName = 'NOMBRE_DE_TU_BUCKET';
+  const bucketName = 'tpfinal-python';
   
   async function loadImagesFromS3() {
     const galleryDiv = document.getElementById('s3-img-gallery');
