@@ -29,7 +29,7 @@ function uploadImages() {
             Bucket: bucketName,
             Key: fileKey,
             Body: file,
-            ACL: 'public-read',
+            // No incluir ACL aquí para usar la configuración predeterminada del bucket
         };
 
         uploadPromises.push(s3.upload(params).promise());
