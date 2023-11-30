@@ -41,20 +41,22 @@
       <span onclick="closeImg()">X</span>
     </div>
     <br><br><br>
-    <h1><span>Galeria</span></h1>
-
+     <!-- Nueva sección para mostrar imágenes locales -->
+    <h2>Imágenes Locales</h2>
     <div class="img-gallery">
-      <img src=" imgs/1.jpg" onclick="openFulImg(this.src)" alt="">
-      <img src=" imgs/2.jpg" onclick="openFulImg(this.src)" alt="">
-      <img src=" imgs/3.jpg" onclick="openFulImg(this.src)" alt="">
-      <img src=" imgs/4.jpg" onclick="openFulImg(this.src)" alt="">
-      <img src=" imgs/5.jpg" onclick="openFulImg(this.src)" alt="">
-      <img src=" imgs/6.jpg" onclick="openFulImg(this.src)" alt="">
-      <img src=" imgs/7.jpg" onclick="openFulImg(this.src)" alt="">
-      <img src=" imgs/8.jpg" onclick="openFulImg(this.src)" alt="">
+      <img src="imgs/1.jpg" onclick="openFulImg(this.src)" alt="">
+      <img src="imgs/2.jpg" onclick="openFulImg(this.src)" alt="">
+      <img src="imgs/3.jpg" onclick="openFulImg(this.src)" alt="">
+      <img src="imgs/4.jpg" onclick="openFulImg(this.src)" alt="">
+      <img src="imgs/5.jpg" onclick="openFulImg(this.src)" alt="">
+      <img src="imgs/6.jpg" onclick="openFulImg(this.src)" alt="">
+      <img src="imgs/7.jpg" onclick="openFulImg(this.src)" alt="">
+      <img src="imgs/8.jpg" onclick="openFulImg(this.src)" alt="">
     </div>
-    <script src="js/script.js"></script>
-    <br><br><br>
+
+    <!-- Nueva sección para mostrar imágenes desde S3 -->
+    <h2>Imágenes desde S3</h2>
+    <div class="img-gallery" id="s3-img-gallery"></div>
   </main>
 
 
@@ -89,7 +91,10 @@
 
     </div>
   </footer>
-
+  <!-- Nuevo script para cargar imágenes desde S3 -->
+  <script src="https://sdk.amazonaws.com/js/aws-sdk-2.1119.0.min.js"></script>
+  <script src="js/s3-gallery.js"></script>
+  <script src="js/script.js"></script>
 </body>
 
 </html>
