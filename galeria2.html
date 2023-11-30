@@ -36,13 +36,13 @@
   </header>
 
   <main>
-    <div class="ful-img2" id="fulImgBox">
+    <div class="ful-img" id="fulImgBox">
       <img src="imgs/1.jpg" id="fulImg" alt="">
       <span onclick="closeImg()">X</span>
     </div>
     <br><br><br>
     <!-- Nueva sección para mostrar imágenes locales -->
-    <h1>Imágenes Locales</h1>
+    <h1><span>Imágenes Locales</span></h1>
     <div class="img-gallery">
       <img src="imgs/1.jpg" onclick="openFulImg(this.src)" alt="">
       <img src="imgs/2.jpg" onclick="openFulImg(this.src)" alt="">
@@ -53,18 +53,25 @@
       <img src="imgs/7.jpg" onclick="openFulImg(this.src)" alt="">
       <img src="imgs/8.jpg" onclick="openFulImg(this.src)" alt="">
     </div>
-
+  </main>
+  <section class="">
     <!-- Formulario para subir imágenes -->
-    <h1>Subir Imágenes</h1>
-    <form id="uploadForm" enctype="multipart/form-data">
-      <input type="file" id="fileInput" accept="image/*" multiple>
-      <button type="button" onclick="uploadImages()">Subir Imágenes</button>
-    </form>
+    <div>
+      <h1><span>Subir Imágenes</span></h1>
+      <form class="frm-upload" id="uploadForm" enctype="multipart/form-data">
+        <input class="inp-upload" type="file" id="fileInput" accept="image/*" multiple>
+        <button class="btn-upload" type="button" onclick="uploadImages()">Subir Imágenes</button>
+      </form>
+    </div>
 
     <!-- Nueva sección para mostrar imágenes desde S3 -->
-    <h1>Imágenes desde S3</h1>
-    <div class="img-gallery2" id="s3-img-gallery"></div>
-  </main>
+    <h1><span>Imágenes desde S3</span></h1>
+    <div class="s3-gallery" id="s3-img-gallery"></div>
+  </section>
+
+
+
+
 
 
   <footer class="footer">
@@ -101,7 +108,6 @@
   <!-- AWS SDK y scripts -->
   <script src="https://sdk.amazonaws.com/js/aws-sdk-2.1119.0.min.js"></script>
   <script src="js/s3-gallery.js"></script>
-  <script src="js/script.js"></script>
 </body>
 
 </html>

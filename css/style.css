@@ -135,36 +135,3 @@ textarea,
 }
 
 
-.img-gallery2 img {
-    width: 100px;
-    /* Ajusta el tamaño deseado para las miniaturas */
-    height: auto;
-    cursor: pointer;
-}
-
-.ful-img2 {
-    display: none;
-    justify-content: center;
-    align-items: center;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.8);
-    z-index: 2;
-}
-
-.ful-img2 img {
-    max-width: 80%;
-    max-height: 100%;
-}
-
-.ful-img2 span {
-    position: absolute;
-    top: 15px;
-    right: 15px;
-    font-size: 24px;
-    color: #fff;
-    cursor: pointer;
-}

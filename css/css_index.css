@@ -84,7 +84,7 @@ nav a {
   .header .button {
     display: block;
     cursor: pointer;
-    margin: 0 10px ;
+    margin: 0 10px;
   }
 
   .header .navbar {
@@ -99,12 +99,12 @@ nav a {
   }
 
   .header .navbar.activo {
-    height: 15vh;
+    height: 22vh;
   }
 
   .navbar.activo li {
     font-family: Arial, Helvetica, sans-serif;
-    margin: 10px 0;
+    margin: 9px 0;
   }
 
   .header .ul {
@@ -190,7 +190,7 @@ video {
   border-radius: 15px;
   transition-duration: 1;
 
-  
+
 }
 
 /* Estilos para Carrousel */
@@ -377,6 +377,83 @@ a:hover {
   font-weight: bold;
 }
 
+/* Estilos para S3 Gallery */
+
+.s3-gallery {
+  width: 80%;
+  margin: 50px auto 50px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 30px;
+}
+
+.s3-gallery img {
+  max-height: 240px;
+  max-width: 180px;
+  width: 100%;
+  cursor: pointer;
+  transition: 1s;
+  border-radius: 10px;
+  align-items: center;
+  justify-content: center;
+}
+
+.s3-gallery img:hover {
+  transform: scale(1.5);
+}
+
+.s3-img {
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.9);
+  position: fixed;
+  top: 0;
+  left: 0;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 99;
+}
+
+.s3-img span {
+  position: absolute;
+  top: 5%;
+  right: 5%;
+  font-size: 30px;
+  color: #fff;
+  cursor: pointer;
+}
+
+.s3-img img {
+  width: 90%;
+  max-width: 100%;
+}
+
+.frm-upload {
+  max-width: 60%;
+  align-items: center;
+  text-align: center;
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.frm-upload input {
+  text-align: center;
+}
+
+.btn-upload {
+  width: 10%;
+  padding: 10px;
+  margin: 5px 0;
+  font-size: 16px;
+  text-align: center;
+
+  color: #0b0a0a;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
 
 /* Estilos para Formulario CONTACTO */
 

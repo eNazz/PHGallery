@@ -74,3 +74,15 @@ async function loadImagesFromS3() {
 
 // Ejecutar la función de carga de imágenes desde S3 al cargar la página
 window.onload = loadImagesFromS3;
+
+//Elementos en el DOM
+const fulImgBox = document.getElementById("fulImgBox"),
+fulImg = document.getElementById("fulImg");
+
+function openFulImg(reference){
+    fulImgBox.style.display = "flex";
+    fulImg.src = reference
+}
+function closeImg(){
+    fulImgBox.style.display = "none";
+}
