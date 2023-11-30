@@ -1,13 +1,6 @@
-// Configuración de AWS
-AWS.config.update({
-    accessKeyId: 'AKIA5NXILMPQJDZE4E2E',
-    secretAccessKey: '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',
-    region: 'us-east-1', // Ejemplo: 'us-east-1'
-});
+import './AWSConfig.js'; // Importa la configuración de AWS
 
-const s3 = new AWS.S3();
-const bucketName = 'tpfinal-python';
-
+// Función para subir imágenes
 function uploadImages() {
     const fileInput = document.getElementById('fileInput');
     const files = fileInput.files;
@@ -27,13 +20,12 @@ function uploadImages() {
             Bucket: bucketName,
             Key: fileKey,
             Body: file,
-            ACL: 'public-read', // Esto hace que la imagen sea pública
+            ACL: 'public-read',
         };
 
         uploadPromises.push(s3.upload(params).promise());
     }
 
-    // Esperar a que todas las promesas de carga se completen
     Promise.all(uploadPromises)
         .then(() => {
             alert('Imágenes subidas con éxito.');
@@ -45,3 +37,6 @@ function uploadImages() {
             alert('Error al subir imágenes.');
         });
 }
+
+// Ejecutar la función de carga de imágenes desde S3 al cargar la página
+window.onload = loadImagesFromS3;
