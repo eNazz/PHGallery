@@ -13,7 +13,7 @@ AWS_SECRET_KEY = 'XuCSFBsc8W/wGCpTtF8CfavyoaYghZ6UBX3/h4VE'
 s3 = boto3.client('s3', aws_access_key_id=AWS_ACCESS_KEY, aws_secret_access_key=AWS_SECRET_KEY)
 
 # Ruta para la página principal
-@app.route('/')
+@app.route('http://ec2-18-206-217-181.compute-1.amazonaws.com:80/')
 def index():
     # Obtener la lista de objetos en el bucket de S3
     response = s3.list_objects_v2(Bucket=S3_BUCKET_NAME)
