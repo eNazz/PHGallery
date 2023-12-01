@@ -68,8 +68,12 @@ h1 span {
 }
 
 .ful-img img {
+    padding: 2%;
     width: 90%;
     max-width: 100%;
+    height: 90%;
+    max-height: 100%;
+    object-fit: contain;
 }
 
 @media screen and (max-width:400px) {

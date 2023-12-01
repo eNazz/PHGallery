@@ -13,7 +13,7 @@
 <body>
   <header class="header">
     <h2 class="logo">
-      <a href="./index.html" class="a"> PhGallery</a>
+      <a href="./index.html" class="a"> Ph Gallery</a>
     </h2>
 
     <button class="button">
@@ -35,27 +35,40 @@
     <script defer src="js/menu.js"></script>
   </header>
 
+
   <main>
     <div class="ful-img" id="fulImgBox">
       <img src="imgs/1.jpg" id="fulImg" alt="">
       <span onclick="closeImg()">X</span>
     </div>
     <br><br><br>
-    <h1><span>Galeria</span></h1>
-
+    <!-- Nueva sección para mostrar imágenes locales -->
+    <h1><span>Imágenes Locales</span></h1>
     <div class="img-gallery">
-      <img src=" imgs/1.jpg" onclick="openFulImg(this.src)" alt="">
-      <img src=" imgs/2.jpg" onclick="openFulImg(this.src)" alt="">
-      <img src=" imgs/3.jpg" onclick="openFulImg(this.src)" alt="">
-      <img src=" imgs/4.jpg" onclick="openFulImg(this.src)" alt="">
-      <img src=" imgs/5.jpg" onclick="openFulImg(this.src)" alt="">
-      <img src=" imgs/6.jpg" onclick="openFulImg(this.src)" alt="">
-      <img src=" imgs/7.jpg" onclick="openFulImg(this.src)" alt="">
-      <img src=" imgs/8.jpg" onclick="openFulImg(this.src)" alt="">
+      <img src="imgs/1.jpg" onclick="openFulImg(this.src)" alt="">
+      <img src="imgs/2.jpg" onclick="openFulImg(this.src)" alt="">
+      <img src="imgs/3.jpg" onclick="openFulImg(this.src)" alt="">
+      <img src="imgs/4.jpg" onclick="openFulImg(this.src)" alt="">
+      <img src="imgs/5.jpg" onclick="openFulImg(this.src)" alt="">
+      <img src="imgs/6.jpg" onclick="openFulImg(this.src)" alt="">
+      <img src="imgs/7.jpg" onclick="openFulImg(this.src)" alt="">
+      <img src="imgs/8.jpg" onclick="openFulImg(this.src)" alt="">
     </div>
-    <script src="js/script.js"></script>
-    <br><br><br>
   </main>
+  <section class="">
+    <!-- Formulario para subir imágenes -->
+    <div>
+      <h1><span>Subir Imágenes</span></h1>
+      <form class="frm-upload" id="uploadForm" enctype="multipart/form-data">
+        <input class="inp-upload" type="file" id="fileInput" accept="image/*" multiple>
+        <button class="btn-upload" type="button" onclick="uploadImages()">Subir Imágenes</button>
+      </form>
+    </div>
+
+    <!-- Nueva sección para mostrar imágenes desde S3 -->
+    <h1><span>Imágenes desde S3</span></h1>
+    <div class="s3-gallery" id="s3-img-gallery"></div>
+  </section>
 
 
   <footer class="footer">
@@ -89,7 +102,9 @@
 
     </div>
   </footer>
-
+  <!-- AWS SDK y scripts -->
+  <script src="https://sdk.amazonaws.com/js/aws-sdk-2.1119.0.min.js"></script>
+  <script src="js/s3-gallery.js"></script>
 </body>
 
 </html>
